@@ -43,6 +43,14 @@ una sesión nueva sin perder nada.
 - [x] Repo: https://github.com/medinetarg-creator/radar-prototipo (público — se puede borrar)
 - [x] Copia en `K:\Drive Medinet\RADAR\`
 
+### Mentoría (Notion) — bajada y reordenada
+- [x] Bajada completa con la API de Notion: 1.429 bloques, 55 imágenes
+- [x] Detectado que el `.md` exportado perdía **67 %** del contenido (38 k de 63,5 k chars)
+- [x] Recuperados **2 prompts enteros** que el `.md` no tenía (creativos masivos, avatar)
+- [x] Recuperados 8 agentes de Cosmos y los marcos de gatillos y niveles de conciencia
+- [x] `RADAR-Cadena-de-creacion.md` — la mentoría como línea de producción de 9 etapas
+- [x] `RADAR-Prompts-encadenados.md` — los 6 prompts reescritos como etapas con ficha
+
 ### Decisiones tomadas
 - [x] Alcance inicial: **uso personal, sin login ni pagos**
 - [x] Dónde corre: **la PC** (escalable después; el scraper es un script suelto → cron)
@@ -50,6 +58,8 @@ una sesión nueva sin perder nada.
 - [x] IA: **LLM propio** con API key propia — proveedor como línea de config
 - [x] Modelo: `deepseek-flash` (el `pro` no hace falta: es redacción, no razonamiento)
 - [x] Costo IA estimado: **menos de US$1/mes**
+- [x] La mentoría se reordena como **cadena con estado** (la ficha), no como prompts sueltos
+- [x] El recorrido: **consulta → mercado → desglose → promesa → funnel → producto → creativos**
 
 ---
 
