@@ -197,7 +197,37 @@ En la Etapa 2 va nuestro criterio, que ya está medido:
 
 ---
 
-## 8. Dónde está el material
+## 8. Las imágenes: qué hay de valor
+
+De las 55 imágenes, la mayoría es **arte promocional generado por IA** — la misma pieza de
+*"Protocolo de Implementación — Acelerador de resultados X10"* repetida en 26 variantes.
+Pero **8 tienen contenido real**, y dos de ellas son marcos de la mentoría que el `.md`
+había perdido por completo:
+
+### Los 3 gatillos mentales (`45` a `48`) — el cerebro triuno
+- **Neocórtex** → razonamiento, reflexión
+- **Cerebro límbico** → emociones, percepción no consciente
+- **Cerebro reptiliano** → instinto, supervivencia
+
+### Los 5 niveles de conciencia (`49`) — el embudo de ventas
+- **Inconsciente** — no sabe que tiene un problema (y no necesita solución)
+- **Consciente del problema** — lo sabe, pero no sabe cómo resolverlo
+- **Consciente de la solución** — quiere resolver, no sabe cuál es la mejor opción
+- **Consciente del producto** — evalúa opciones, todavía no decide
+- **Totalmente consciente** — ya compró; entra la post-venta
+
+**Por qué importa para la cadena:** define **qué mensaje va en cada tramo del funnel**. A
+alguien inconsciente no le hablás del producto. Esto debería condicionar la Etapa 5 (el copy
+de la landing) y la Etapa 8 (los creativos) — hoy el curso lo enseña pero no lo conecta.
+
+### Los 4 ejemplos de producto (`52` a `55`)
+Mapa mental, recetas, planificador y una **app real** (landing con mockup de dashboard:
+*"Solo necesitas un sistema para ser organizado y productivo. Deja de alternar entre apps."*).
+Son la referencia de qué se entrega en la Etapa 6.
+
+---
+
+## 9. Dónde está el material
 
 Todo bajado de Notion con la API, en `C:\Users\odiki\Desktop\Radar\mentoria\`:
 
