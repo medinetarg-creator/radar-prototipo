@@ -82,6 +82,7 @@ Un objeto que crece. Empieza casi vacío y termina con el negocio entero.
 
   "desglose": {
     "producto": "", "promesa_actual": "", "mecanismo": "",
+    "nivel_conciencia": "",
     "avatar": {
       "nombre": "", "edad": null, "sexo": "", "rol": "",
       "dolores": [], "deseos": [], "creencias": [], "objeciones": [],
@@ -102,7 +103,8 @@ Un objeto que crece. Empieza casi vacío y termina con el negocio entero.
   "funnel": { "bloques": [] },
 
   "producto": {
-    "entregables": [], "formatos": [], "complementarios": []
+    "inventario_promesas": [], "entregables": [], "formatos": [],
+    "indice": [], "complementarios": []
   },
 
   "creativos": {
@@ -147,7 +149,9 @@ resultados en la FICHA que te paso abajo.
    cuestionario de diez puntos.
 
 3. SI TE FALTA ALGO QUE NO ES DE ESTA ETAPA, NO LO INVENTES Y NO LO PIDAS.
-   Anotalo en `faltantes` y seguí con lo que tengas. Otra etapa lo resolverá.
+   Anotalo en `notas.faltantes` y seguí con lo que tengas. Otra etapa lo resolverá.
+   EXCEPCIÓN: si sin ese dato no podés hacer NADA de tu etapa, pedímelo. Uno por vez.
+   Si no fuera así, la cadena se traba en silencio y nadie se entera.
 
 4. NUNCA INVENTES DATOS. Si algo no está en la ficha ni en la captura, decilo con todas
    las letras. Un hueco declarado vale más que un dato inventado.
@@ -163,10 +167,46 @@ resultados en la FICHA que te paso abajo.
    concreto que no está ahí, pará y preguntá.
    Un ejemplo heredado de otro producto contamina todo el resultado de acá para abajo.
 
+8. AL ARRANCAR, DECLARÁ QUÉ LEÍSTE.
+   Dos líneas: "Leí de la ficha: consulta=…, pais=…, promesa_elegida=…". Si algo no
+   cuadra, falta o te parece que contradice a tu etapa, avisámelo ANTES de empezar.
+   Esto es lo que evita que dos etapas se alejen sin que nadie lo note.
+
+9. ANTES DE USAR UN CAMPO, REVISÁ `notas.faltantes`.
+   Si ese campo está anotado como faltante, NO lo uses como si tuviera contenido.
+   Un "sin datos" tratado como dato real es el peor error posible: no se nota.
+
+10. TENÉS DOS MOMENTOS DISTINTOS.
+    (a) EL ANÁLISIS: conversación normal, ordenada, con las preguntas que hagan falta.
+        Dura lo que tenga que durar.
+    (b) EL CIERRE: cuando te doy el OK, devolvés SOLO el JSON del campo que te toca,
+        sin texto alrededor y sin explicaciones, para que se pueda guardar automático.
+
 ## LA FICHA
 
 (acá va el JSON de la sección 2, con todo lo que ya se cargó)
 ```
+
+### Cómo se arma el mensaje de cada etapa
+
+```
+[CONTRATO]    ← las 10 reglas, idénticas en todas las etapas
+[LA FICHA]    ← el JSON completo, con todo lo que ya se generó
+[TU ETAPA]    ← el prompt de esa etapa
+```
+
+**La ficha va COMPLETA, no filtrada.** Aunque una etapa lea dos campos, mandale todo:
+
+- Decidir qué recortar es una fuente de errores: podés recortar justo lo que necesitaba.
+- El costo es despreciable — la ficha entera no llega a 2.000 tokens.
+- Si el modelo ve el resto, puede detectar contradicciones que de otro modo no ve.
+
+**Antes de guardar la salida de cualquier etapa, dos controles:**
+
+1. Que sea **JSON válido**.
+2. Que sus claves **existan en el esquema**. Si el modelo devuelve una clave nueva, **no la
+   guardes en silencio**: avisá. Un campo nuevo casi siempre es un error de tipeo — y si no
+   lo es, hay que agregarlo al esquema a propósito.
 
 ---
 
@@ -227,7 +267,7 @@ Ampliá la lista con lo que vos conozcas.
 ## SALIDA
 
 Devolveme el JSON de `mercado` completo, listo para guardar en la ficha.
-Lo que no puedas completar con criterio, dejalo vacío y anotalo en `faltantes`.
+Lo que no puedas completar con criterio, dejalo vacío y anotalo en `notas.faltantes`.
 ```
 
 ---
@@ -242,6 +282,24 @@ Lo que no puedas completar con criterio, dejalo vacío y anotalo en `faltantes`.
 > **Esta etapa no tiene prompt del curso, y es a propósito.** Antes acá se hacía a mano en la
 > Biblioteca. En RADAR lo hace el **scraper**: corre las búsquedas de la etapa 1, mide cada
 > resultado y devuelve la oferta recomendada.
+
+**Contrato de datos — qué tiene que quedar cargado sí o sí:**
+
+| Campo | De dónde sale | ¿Obligatorio? |
+|---|---|---|
+| `link_biblioteca` | el scraper, de la búsqueda | sí |
+| `anunciante` | el scraper | sí |
+| `ads_activos` | 1 request extra: la ficha del anuncio | sí |
+| `dias_corriendo` | la fecha de inicio del anuncio más viejo | **sí — es LA señal** |
+| `pais_origen` | la propia búsqueda | sí |
+| `precio` | la landing | sí |
+| `checkout` | la landing | no |
+| `captura` | Playwright sobre la landing | sí |
+| `senal` | calculada con el criterio de abajo | sí |
+
+**Si el scraper todavía no está andando**, esta etapa se completa a mano desde la Biblioteca
+y se carga igual. Lo que no se puede es saltearla: **sin oferta base no hay nada que
+desglosar**, y todas las etapas siguientes quedan sin insumo.
 
 **El criterio de selección va acá, y no es el del curso.** El curso usa solo cantidad de
 anuncios. Nosotros, con datos medidos:
@@ -326,6 +384,11 @@ Las 11 etapas:
 CONCLUSIÓN: qué venden, a quién, qué problema, promesa, mecanismo, ángulo, cómo suben el
 ticket, y qué partes se pueden ADAPTAR.
 
+Y agregá una cosa más, que usan las etapas siguientes: decime en qué **NIVEL DE CONCIENCIA**
+le habla esta oferta — inconsciente / consciente del problema / consciente de la solución /
+consciente del producto — y justificalo con lo que viste en la landing. Ese dato define por
+dónde arranca nuestra página y qué ángulo usan los creativos.
+
 ## DATOS QUE NO TENÉS Y NO VAS A TENER
 
 Una sola captura no cubre todo. La landing sirve para las etapas 1 a 6. El checkout y los
@@ -337,7 +400,7 @@ Si no la tengo, marcá la etapa como "sin datos" y seguí. No la inventes.
 ## SALIDA
 
 Devolveme el JSON de `desglose` completo. Las etapas sin datos van con el texto
-"sin datos" y se anotan en `faltantes`.
+"sin datos" y se anotan en `notas.faltantes`.
 ```
 
 ---
@@ -458,9 +521,10 @@ Devolveme el JSON de `promesa`. Cuando elija la elegida, se guarda en `promesa.e
 ### ETAPA 5 — FUNNEL · *¿cómo lo digo?*
 
 - **Lee:** `promesa.elegida`, `promesa.subpromesas`, `desglose.avatar`,
-  `desglose.mecanismo`, `desglose.oferta`
+  `desglose.mecanismo`, `desglose.oferta`, `desglose.nivel_conciencia`
 - **Escribe:** `funnel.bloques[]`
-- **Pide si falta:** nada.
+- **Pide si falta:** `desglose.nivel_conciencia`. Si el desglose quedó "sin datos",
+  preguntámelo — sin eso el arranque de la página sale a ciegas.
 - **Nuevo respecto del curso:** los bloques se escriben **según el nivel de conciencia** del
   avatar (ver la sección 5).
 
@@ -488,12 +552,36 @@ La estructura será:
 10. Opcional: quién soy yo
 11. FAQ
 
+## QUÉ TIENE QUE LOGRAR CADA BLOQUE
+
+Los 11 bloques son el ORDEN, no el contenido. Cada uno tiene que responder una pregunta:
+
+| # | Bloque | Qué tiene que lograr |
+|---|---|---|
+| 1 | Headline + Sub + fotos | Detener y prometer. Acá vive la promesa elegida |
+| 2 | Lead con dolor + transformación | Que el avatar diga "esto es para mí" |
+| 3 | Beneficios instantáneos | Qué tiene apenas compra, no qué logra en 30 días |
+| 4 | De qué se trata | Bajar la ansiedad: qué es y cómo funciona |
+| 5 | Para quién es | Que se reconozca — y que el que no es, se vaya |
+| 6 | Pruebas sociales | Si hay. Si no hay, se omite sin reemplazo |
+| 7 | Solución + video/imagen | El mecanismo, el "por qué esta vez sí" |
+| 8 | Bonos + entregables | Subir el valor percibido |
+| 9 | Oferta con promesa | Precio, garantía, ancla, urgencia |
+| 10 | Quién soy | Autoridad. Opcional |
+| 11 | FAQ | Las objeciones que no se cerraron antes |
+
+**En low ticket, los bloques que más pesan son el 1, el 2, el 7 y el 9.** Si el tiempo es
+corto, esos cuatro tienen que estar perfectos y el resto puede ser breve.
+
+**Los bloques 1 y 2 son los que más cambian con el nivel de conciencia.** El resto es
+bastante estable entre productos.
+
 Una vez que tengas el funnel base con los copys, es hora de darle forma. Recomendá dónde
 colocar: video demostrativo/mockup, imágenes visuales, GIFs dinámicos.
 
 ## REGLA DE CONCIENCIA (esto no está en el curso, es nuestro)
 
-Mirá el nivel de conciencia del avatar que viene en la ficha y ajustá el arranque:
+Mirá `desglose.nivel_conciencia` (viene en la ficha) y ajustá el arranque:
 
 - INCONSCIENTE — no sabe que tiene un problema. Empezá por el síntoma, no por la solución.
 - CONSCIENTE DEL PROBLEMA — sabe qué le pasa, no sabe cómo resolverlo. Vendé el MECANISMO.
@@ -569,8 +657,8 @@ Devolveme el JSON de `producto`: entregables, formatos y complementarios.
 
 ### ETAPA 7 — CREATIVOS · *¿cómo lo muestro?*
 
-- **Lee:** `desglose.avatar`, `promesa.elegida`, `funnel.bloques[1]` (headline),
-  `niveles_conciencia`
+- **Lee:** `desglose.avatar`, `desglose.nivel_conciencia`, `promesa.elegida`,
+  `funnel.bloques[1]` (headline)
 - **Escribe:** `creativos.avatar_base`, `creativos.piezas[]`, `creativos.guion_escenas[]`
 - **Pide si falta:** nada.
 - **Este paso son los DOS prompts del curso (creativos + avatar), encadenados.**
@@ -792,7 +880,7 @@ reales.
 4. **La regla de conciencia** en la Etapa 5 y la 7
 5. **Nuestro criterio de selección** en la Etapa 2 (días como señal, volumen como filtro)
 6. **Un prompt nuevo** para la Etapa 6 (Producto), que el curso no tenía
-7. **`faltantes` y `decisiones`** — el registro de huecos y de por qué se decidió cada cosa
+7. **`notas.faltantes` y `notas.decisiones`** — el registro de huecos y de por qué se decidió cada cosa
 
 **Lo que se corrigió:**
 - La Etapa 4 ya no pide la página ni el país: los lee de la ficha
@@ -836,3 +924,28 @@ ningún otro.
   para pasar de vender el resultado a vender el mecanismo con nombre propio.
 - **La estimación de facturación** (anuncios × US$2/día × 30) volvió, pero marcada como
   orden de magnitud y **no** como criterio de decisión.
+
+---
+
+## 9. Controles de integridad
+
+Si alguno de estos falla, hay un error latente en la cadena.
+
+**Automáticos** (se corren sobre este documento):
+
+1. **Los campos que cada etapa dice leer o escribir existen en la ficha.** Es el control que
+   más errores atrapa: un `Lee:` que apunta a un campo inexistente hace que la etapa invente
+   el dato o se trabe. Estado actual: **77 campos, 0 referencias rotas.**
+2. **El JSON de la ficha es válido.**
+3. **Los bloques de código están balanceados.**
+
+**De diseño** (reglas del contrato):
+
+4. **Regla 8 — declarar qué leyó.** Detecta la divergencia temprano, que es exactamente el
+   problema que tenía el flujo original de copiar y pegar.
+5. **Regla 9 — un campo en `notas.faltantes` no se usa como si tuviera contenido.** Es el
+   error más peligroso de todos, porque no se nota.
+6. **Regla 10 — dos momentos (análisis / cierre en JSON).** Sin esto, la salida no se puede
+   guardar automáticamente.
+7. **Control de claves nuevas** — si una etapa devuelve una clave que no está en el esquema,
+   no se guarda en silencio: se avisa.
