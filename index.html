@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RADAR — Prototipos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0D; --surface:#111316; --surface-2:#17191D; --surface-3:#1E2126;
+  --border:#24282E; --border-2:#31363E; --ink:#EAEEF3; --ink-2:#A8B1BC;
+  --muted:#6E7783; --accent:#C8F751; --accent-dim:rgba(200,247,81,.12);
+  --s-esc:#C8F751; --s-con:#5AC8FA; --s-pro:#FF8A3D;
+  --f-sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-mono:'Geist Mono',ui-monospace,'SF Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:15px;line-height:1.6;
+     -webkit-font-smoothing:antialiased;padding:0 24px 80px}
+.wrap{max-width:820px;margin:0 auto}
+header{padding:64px 0 40px}
+.marca{display:flex;align-items:center;gap:11px;margin-bottom:22px}
+.punto{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim)}
+.marca h1{font-size:16px;font-weight:600;letter-spacing:.02em}
+.marca .tag{font-size:11px;color:var(--muted);border:1px solid var(--border-2);
+  padding:3px 10px;border-radius:99px;font-family:var(--f-mono)}
+h2{font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
+.sub{color:var(--ink-2);font-size:15px;max-width:640px}
+.tarjetas{display:flex;flex-direction:column;gap:16px;margin-top:40px}
+a.card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:24px 26px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+a.card:hover{border-color:var(--border-2);transform:translateY(-2px)}
+a.card .fila{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+a.card h3{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.etq{font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.e-esc{color:var(--s-esc);background:rgba(200,247,81,.13)}
+.e-con{color:var(--s-con);background:rgba(90,200,250,.13)}
+.e-pro{color:var(--s-pro);background:rgba(255,138,61,.13)}
+a.card p{color:var(--ink-2);font-size:13.5px;margin-bottom:14px}
+a.card .falso{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+a.card .flecha{color:var(--accent);font-family:var(--f-mono);font-size:12px;margin-top:12px;display:block}
+.pie{margin-top:44px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+.pie b{color:var(--ink-2);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="marca"><span class="punto"></span><h1>RADAR</h1>
+    <span class="tag">prototipos · sep 2026</span></div>
+  <h2>Ofertas digitales que están escalando</h2>
+  <p class="sub">Dos prototipos navegables del mismo producto. El primero muestra el diseño y las
+     interacciones con datos de ejemplo; el segundo, la prueba real contra la Biblioteca de Anuncios de Meta.</p>
+</header>
+
+<div class="tarjetas">
+  <a class="card" href="Radar-Prototipo.html">
+    <div class="fila"><h3>Prototipo navegable</h3><span class="etq e-esc">diseño completo</span></div>
+    <p>Siete pantallas con datos de ejemplo: panel, librería con filtros, ficha de oferta, match,
+       guardados, tendencias y planes. El criterio ya está corregido: ordena por antigüedad y
+       crecimiento, no por cantidad de anuncios.</p>
+    <span class="falso">7 vistas · datos de ejemplo · se guarda en el navegador</span>
+    <span class="flecha">Entrar →</span>
+  </a>
+
+  <a class="card" href="Radar-Prueba-Real.html">
+    <div class="fila"><h3>Prueba con datos reales</h3><span class="etq e-con">anuncios reales</span></div>
+    <p>Anuncios extraídos de la Biblioteca de Anuncios de Meta sin cuenta ni API: creativo original,
+       anunciante, texto, dominio, días corriendo y cantidad de anuncios activos de cada página.</p>
+    <span class="falso">19 anuncios reales · un anunciante por tarjeta · filtros y ficha</span>
+    <span class="flecha">Entrar →</span>
+  </a>
+
+  <a class="card" href="RADAR-Forma-del-producto.md">
+    <div class="fila"><h3>La forma del producto</h3><span class="etq e-pro">documento</span></div>
+    <p>El diseño completo: los dos niveles de análisis, las siete pantallas, las fórmulas del criterio,
+       el modelo de datos, el roadmap por fases y cómo escala de la PC a la nube.</p>
+    <span class="falso">Markdown · se descarga</span>
+    <span class="flecha">Abrir →</span>
+  </a>
+</div>
+
+<div class="pie">
+  Todo lo de esta página es de <b>uso interno</b>: los datos de la prueba real son públicos
+  (provienen de la Biblioteca de Anuncios de Meta) y el prototipo usa datos de ejemplo.<br>
+  Ningún archivo contiene claves ni credenciales.
+</div>
+
+</div>
+</body>
+</html>
