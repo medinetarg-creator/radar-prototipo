@@ -106,7 +106,10 @@ Un objeto que crece. Empieza casi vacío y termina con el negocio entero.
   },
 
   "creativos": {
-    "avatar_base": "",
+    "avatar_base": {
+      "es_comprador": "", "rol": "", "vestuario": "", "escenario": "",
+      "objetos": [], "expresion": "", "prompt_imagen": "", "justificacion": {}
+    },
     "piezas": [],
     "guion_escenas": []
   },
@@ -153,6 +156,12 @@ resultados en la FICHA que te paso abajo.
    No avances sola a la etapa siguiente.
 
 6. Español latino, cercano y directo. Sin relleno. Sin vueltas.
+
+7. TODO VALOR CONCRETO SALE DE LA FICHA.
+   Vestuario, escenario, objetos, edad, moneda, precios, hora del día: cada detalle
+   específico se DERIVA de un dato de la ficha. Si te encontrás escribiendo un detalle
+   concreto que no está ahí, pará y preguntá.
+   Un ejemplo heredado de otro producto contamina todo el resultado de acá para abajo.
 
 ## LA FICHA
 
@@ -310,6 +319,9 @@ Las 11 etapas:
 
 11. ANUNCIOS — los de Meta Ads Library: hook (primeros 3 seg), ángulo, problema, deseo,
     formato, duración, CTA, promesa. Detectá qué se repite = ángulo ganador.
+    Facturación: el curso propone estimarla con anuncios activos × ~US$2/día × 30. Dala si
+    tenés los datos, pero aclarando que es un ORDEN DE MAGNITUD, no un dato — Meta no
+    publica el gasto de anuncios comerciales. Y no la uses para decidir.
 
 CONCLUSIÓN: qué venden, a quién, qué problema, promesa, mecanismo, ángulo, cómo suben el
 ticket, y qué partes se pueden ADAPTAR.
@@ -398,6 +410,30 @@ Debajo, marcá la más fuerte y por qué (2 líneas).
 SUB-PROMESA — 5-6 variantes. Cada una desactiva la objeción #1 desde un ángulo distinto
 (elimina esfuerzo · requisito previo · experiencia · miedo/riesgo · tiempo). Formato
 "aunque…", "sin…", "incluso si…".
+
+## MODELAJE CULTURAL (del curso)
+
+Adaptá todo al mercado que dice la ficha:
+
+- Ajustá la promesa a la **moneda y el poder adquisitivo** del país (pesos en Argentina,
+  soles en Perú, dólares para todo LATAM).
+- **No traslades el número: trasladá la lógica.** Un "$97" que en EE.UU. es una compra por
+  impulso no lo es necesariamente en Argentina. Lo que se traslada es la relación entre el
+  precio y lo que cuesta un café, no la cifra.
+- Si el precio de la oferta modelo está en otra moneda, decime el equivalente con criterio,
+  y aclarame el supuesto que usaste.
+
+## SOFISTICAR LA PROMESA (del curso)
+
+Después de evaluar, dame la versión sofisticada: pasá de vender el RESULTADO a vender el
+MECANISMO con nombre propio.
+
+Fórmula: **Resultado + Mecanismo + Rapidez + Objeciones eliminadas**
+
+Ayudame con: nombre del producto (que revele el mecanismo), headline sofisticada, y una
+subpromesa que rompa objeciones.
+
+Siempre modelar y mejorar. **Nunca copiar textual.**
 
 ## PROHIBIDO
 
@@ -506,6 +542,11 @@ Listá cada cosa que la landing prometió entregar. Después marcá, para cada u
 Elegí el formato para cada entregable imprescindible, según el nicho y el precio:
 PDF · mapa mental · guía · planilla · plantilla · libro de recetas · audiolibro ·
 meditaciones guiadas · juego imprimible · minicurso · app · membresía.
+
+**No elijas de esta lista por gusto ni porque sea la más fácil de hacer.** Elegí según dos
+cosas de la ficha: lo que el avatar **ya consume** (y por lo tanto espera recibir) y el
+**nivel de conciencia** (a alguien consciente del problema le sirve una guía; a alguien
+consciente del producto le sirve una herramienta). Decime por qué elegiste cada formato.
 
 En low ticket, MENOS es más: un entregable bien hecho convierte mejor que seis a medias.
 
@@ -636,7 +677,9 @@ CREATIVO #X
 - HEADLINE:
 - Subheadline (opcional):
 - Texto corto de apoyo:
-- Concepto visual: describí la escena exacta.
+- Concepto visual: describí la escena exacta, **en el mismo contexto físico y con el mismo
+  vestuario del avatar base**. No inventes un mundo nuevo para cada creativo: cambia la
+  acción y el encuadre, no el lugar.
 
 La imagen debe provocar emoción instantánea, no ser genérica:
 - Dolor → frustración, cansancio, confusión, estrés, duda
@@ -658,12 +701,25 @@ BASE DE HEADLINES VALIDADAS (usar y variar):
 
 ## PARTE C — EL GUION DE ESCENAS
 
-Para los que van a video, partí el guion en escenas. Ejemplo de estructura:
+Para los que van a video, partí el guion en escenas.
 
-ESCENA 1 — HOOK: el avatar mirando [el problema] frustrado/a
-ESCENA 2 — PROBLEMA: el avatar [la situación cotidiana del dolor]
-ESCENA 3 — REVELACIÓN: el avatar descubriendo [el mecanismo]
-ESCENA 4 — DESEO: el avatar [disfrutando el resultado], en calma
+**Las escenas ocurren en el MISMO lugar y con el MISMO vestuario que el avatar base.**
+No inventes escenarios nuevos: si el avatar es un asesor en su escritorio, las escenas
+pasan en ese escritorio. Cambiá la ACCIÓN, la EMOCIÓN y el ENCUADRE — no el mundo.
+
+Estructura:
+
+ESCENA 1 — HOOK: el avatar en [contexto físico derivado], haciendo [la acción que
+  muestra el problema] — [emoción del dolor declarado]
+ESCENA 2 — AGITACIÓN: el avatar [la situación cotidiana donde el dolor se agrava],
+  con [los objetos que ya usa para intentarlo]
+ESCENA 3 — REVELACIÓN: el avatar descubriendo [el mecanismo] — cambia la expresión
+ESCENA 4 — DESEO: el avatar [la transformación concreta de la promesa] — mismo lugar,
+  otro estado
+
+**La diferencia entre la escena 1 y la 4 es el ESTADO del avatar, no el decorado.** Si para
+mostrar el resultado tenés que cambiar de escenario, estás mostrando el resultado antes de
+vender el mecanismo.
 
 Después se unen las escenas y se agrega voz + subtítulos + música + CTA.
 
@@ -742,3 +798,41 @@ reales.
 - La Etapa 4 ya no pide la página ni el país: los lee de la ficha
 - La Etapa 3 pide las capturas que le faltan **cuando llega a esa parte**, no todas al principio
 - La Etapa 5 ya no inventa el arranque: lo decide según el nivel de conciencia
+
+---
+
+## 8. Corrección de valores fijos
+
+El primer borrador heredó detalles del **ejemplo de la mentoría** —que era un producto de
+organización del hogar— y los dejó escritos en el prompt. Servían para ese producto y para
+ningún otro.
+
+**La regla que salió de esto, y que ahora está en el contrato (regla 7):**
+
+> Todo valor concreto **se deriva de la ficha**. Si te encontrás escribiendo un detalle
+> específico que no está ahí, pará y preguntá. Un ejemplo heredado de otro producto
+> contamina todo el resultado de acá para abajo.
+
+**Qué se corrigió:**
+
+- **El vestuario del avatar** decía "ropa cómoda de entrecasa". Ahora se **deriva** del rol
+  del avatar y del contexto donde vive el problema. Un producto para asesores de seguros
+  muestra camisa y escritorio; no ropa de entrecasa en la cocina.
+- **Para poder derivarlo, la ficha cambió:** `desglose.avatar` ahora guarda **rol u
+  ocupación**, **contexto físico** y **objetos**, no solo edad y dolores.
+- **El escenario** es donde ocurre el **problema**, no donde ocurre la solución.
+- **El guion de escenas** tenía la estructura del ejemplo de la casa ("frustrada", "en
+  calma"). Ahora las escenas pasan en el **mismo contexto y vestuario** del avatar base, y
+  lo que cambia entre la primera y la última es el **estado**, no el decorado.
+- **El concepto visual de los 10 creativos** reutiliza ese mismo mundo.
+- **Los formatos del producto** ya no se eligen de una lista por gusto: se eligen según lo
+  que el avatar ya consume y su nivel de conciencia.
+
+**Y tres cosas del curso que se me habían perdido en el primer borrador:**
+
+- **MODELAJE CULTURAL** — adaptar la promesa a la moneda y el poder adquisitivo del país
+  ("no traslades el número, trasladá la lógica"). Estaba en el prompt del desglose.
+- **SOFISTICAR LA PROMESA** — la fórmula *Resultado + Mecanismo + Rapidez + Objeciones*,
+  para pasar de vender el resultado a vender el mecanismo con nombre propio.
+- **La estimación de facturación** (anuncios × US$2/día × 30) volvió, pero marcada como
+  orden de magnitud y **no** como criterio de decisión.
