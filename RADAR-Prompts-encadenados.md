@@ -81,7 +81,13 @@ Un objeto que crece. Empieza casi vacío y termina con el negocio entero.
   },
 
   "desglose": {
-    "producto": "", "promesa_actual": "", "mecanismo": "", "avatar": "",
+    "producto": "", "promesa_actual": "", "mecanismo": "",
+    "avatar": {
+      "nombre": "", "edad": null, "sexo": "", "rol": "",
+      "dolores": [], "deseos": [], "creencias": [], "objeciones": [],
+      "intento_antes": "", "lenguaje": "",
+      "contexto_fisico": "", "objetos": []
+    },
     "landing": "", "oferta": "", "checkout": "",
     "order_bump": "", "upsell": "", "funnel_completo": "", "anuncios": ""
   },
@@ -275,8 +281,13 @@ Las 11 etapas:
    qué lo hace distinto. Pregunta clave: ¿por qué comprar ESTO y no buscarlo gratis
    en YouTube?
 
-4. AVATAR — nombre ficticio, edad, sexo, dolores, deseos, creencias, objeciones, qué
-   intentó antes, qué cree que necesita vs. qué necesita, y el lenguaje del mercado.
+4. AVATAR — nombre ficticio, edad, sexo, **rol u ocupación**, dolores, deseos, creencias,
+   objeciones, qué intentó antes, qué cree que necesita vs. qué necesita, y el lenguaje
+   del mercado. Y además, dos cosas que parecen detalles y no lo son: **el contexto
+   físico donde vive el problema** (dónde, en qué momento del día) y **qué objetos usa
+   hoy para intentar resolverlo**. Esos dos son los que después definen el vestuario y
+   el escenario de los creativos: sin ellos, el avatar visual sale genérico o —peor—
+   con ropa que no tiene nada que ver con el producto.
 
 5. LANDING — bloque por bloque de arriba abajo, explicando POR QUÉ cada bloque está
    en ESE momento.
@@ -537,14 +548,77 @@ Director Creativo de Paid Ads.
 Todo el contenido visual sale del mismo personaje. Si lo generás una vez y lo reutilizás,
 no dependés de que la IA invente una persona distinta en cada video.
 
-Describime el avatar en un prompt de imagen, partiendo del avatar de la ficha:
+### A.1 — ¿QUIÉN es el avatar?
 
-Crea un avatar: [nacionalidad] de aproximadamente [edad] años, apariencia cotidiana y
-natural, [pelo], ropa cómoda de entrecasa, rostro realista, textura de piel natural, sin
-apariencia de modelo profesional. Expresión cercana y creíble. Fotografía lifestyle
-realista tomada con celular normal tipo iPhone 12, que no parezca profesional.
+El avatar es SIEMPRE el **COMPRADOR**. No es el que vende, y no es "el tema del producto".
 
-Ese avatar queda guardado como referencia visual para todo lo demás.
+- Producto *"cómo vender seguros"* → el avatar es el **ASESOR DE SEGUROS**
+- Producto *"cómo elegir tu seguro"* → el avatar es el **CLIENTE** que busca cobertura
+- Producto *"rutinas para ordenar la casa"* → el avatar es **quien vive el desorden**
+
+Sacá de la ficha a quién le habla la oferta (`desglose.avatar`) y decime en una línea por
+qué ese es el comprador y no otro. Si hay ambigüedad, preguntámelo.
+
+### A.2 — Derivá cada atributo visual de la ficha
+
+**NO uses una descripción fija.** Cada atributo sale de un dato concreto:
+
+| Atributo visual | De dónde sale |
+|---|---|
+| Edad y sexo | `desglose.avatar` |
+| Rol u ocupación | `desglose.avatar` |
+| **Vestuario** | **El rol del avatar y el contexto donde vive el problema.** No el contexto donde vive el resultado |
+| Escenario | Dónde OCURRE EL PROBLEMA, no dónde ocurre la solución |
+| Objetos en escena | Las herramientas que el avatar ya usa para intentar resolverlo |
+| Expresión | El dolor declarado en `desglose.avatar.dolores` |
+| Tipo de foto | El canal. Para Meta, tiene que parecer foto de celular |
+
+Mostrame la tabla completa con el valor que elegiste para cada uno y **una línea de
+justificación por atributo, tomada de la ficha**. Si un dato no está, preguntámelo antes
+de inventarlo.
+
+### A.3 — El prompt de imagen
+
+Recién cuando apruebe la tabla, armá el prompt con esos valores:
+
+```
+Crea un avatar: [nacionalidad] de aproximadamente [edad] años, [rol u ocupación],
+apariencia cotidiana y natural, [pelo], [vestuario derivado], rostro realista, textura
+de piel natural, sin apariencia de modelo profesional. Expresión [emoción derivada].
+Fotografía lifestyle realista tomada con celular normal tipo iPhone 12, que no parezca
+profesional. Contexto: [escenario derivado], con [objetos derivados].
+```
+
+Generá **3 variantes** cambiando pelo y vestuario, para poder elegir.
+
+### A.4 — Dos ejemplos de la derivación
+
+**Ejemplo A — "Rutinas para ordenar la casa"** (el ejemplo de la mentoría)
+
+| Atributo | Valor | De dónde |
+|---|---|---|
+| Edad / sexo | mujer, 43 | el avatar de la oferta |
+| Rol | madre que trabaja | el avatar de la oferta |
+| Vestuario | ropa cómoda de entrecasa | el problema ocurre DENTRO de la casa |
+| Escenario | la cocina | donde el desorden se sufre |
+| Expresión | frustración cansada | el dolor es desorden + carga mental |
+
+**Ejemplo B — un producto para asesores de seguros**
+
+| Atributo | Valor | De dónde |
+|---|---|---|
+| Edad / sexo | hombre, 38 | el avatar es el ASESOR, no el asegurado |
+| Rol | asesor de seguros | el comprador del producto |
+| Vestuario | **camisa sin corbata, manga arremangada** | su rol de trabajo — acá NO va ropa de entrecasa |
+| Escenario | escritorio con papeles, o atendiendo a un cliente | el problema ocurre en el trabajo |
+| Objetos | planilla de cálculo, teléfono, carpeta | herramientas que ya usa para intentar resolverlo |
+| Expresión | agotamiento de fin de mes | el dolor es la comisión y los cierres |
+
+**Fijate la diferencia:** el mismo template produce "ropa de entrecasa en la cocina" y
+"camisa arremangada en la oficina". Lo que cambia no es el prompt: es de dónde saca los
+datos.
+
+Ese avatar queda guardado en `creativos.avatar_base` como referencia visual para todo lo demás.
 
 ## PARTE B — LOS 10 CREATIVOS
 
