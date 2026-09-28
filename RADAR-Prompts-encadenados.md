@@ -68,6 +68,12 @@ Un objeto que crece. Empieza casi vacío y termina con el negocio entero.
     "top10_busquedas": []
   },
 
+  "conocimiento": {
+    "fuentes": [],
+    "temas": [],
+    "huecos": []
+  },
+
   "oferta_base": {
     "link_biblioteca": "",
     "anunciante": "",
@@ -103,8 +109,10 @@ Un objeto que crece. Empieza casi vacío y termina con el negocio entero.
   "funnel": { "bloques": [] },
 
   "producto": {
-    "inventario_promesas": [], "entregables": [], "formatos": [],
-    "indice": [], "complementarios": []
+    "inventario_promesas": [],
+    "variantes": [],
+    "recomendada": "",
+    "entregables": [], "formatos": [], "indice": [], "complementarios": []
   },
 
   "creativos": {
@@ -120,11 +128,36 @@ Un objeto que crece. Empieza casi vacío y termina con el negocio entero.
 }
 ```
 
+**Los dos campos nuevos:**
+- `conocimiento` — el material del TEMA, más allá de la oferta modelada (ver abajo).
+- `producto.variantes[]` y `producto.recomendada` — **tres** formas de empaquetar el producto,
+  no una. La etapa 6 las propone y vos elegís.
+
 **Dos campos que no se pueden perder:**
 - `notas.faltantes` — todo lo que una etapa necesitó y no tenía. Si el HTML no mencionaba el
   precio, queda anotado acá en vez de inventarse.
 - `notas.decisiones` — cada elección tuya (qué promesa elegiste, qué oferta modelaste).
   Sin esto, en dos semanas no sabés por qué el funnel dice lo que dice.
+
+**Y un insumo que hay que llenar ANTES de las etapas:** `conocimiento`.
+
+Si el sistema solo mira la oferta que está modelando, el producto sale siendo una copia de esa
+oferta. `conocimiento` es el material del TEMA, más allá del competidor. De dónde sale, sin
+gastar un peso:
+
+| Fuente | Cómo se obtiene | Costo |
+|---|---|---|
+| **El corpus del nicho** | El motor ya baja todos los avisos de la búsqueda, todos los días, con su copy. Son las otras ofertas del mismo tema | $0 — **ya se baja y hoy se tira** |
+| **Las landings del nicho** | `r.jina.ai` sobre cada dominio del corpus (verificado 28-sep) | $0 |
+| **Transcripciones de video** | `yt-dlp` baja los subtítulos de los avisos y del contenido del tema | $0 — segundos |
+| **Material propio** | Lo que vos ya tengas del tema | $0 |
+
+`conocimiento.huecos` es tan importante como `temas`: si hay un punto del tema que ninguna
+fuente cubrió, se anota. Es lo que evita escribir con seguridad sobre algo que no se sabe.
+
+> **El límite, y va en serio:** esto es para ENTENDER el tema, no para copiar el material de
+> otro. El texto del producto se escribe de cero. Un ebook ajeno no es un insumo: es un
+> problema legal.
 
 ---
 
@@ -602,8 +635,9 @@ una línea de por qué está en ese lugar.
 
 ### ETAPA 6 — PRODUCTO · *¿qué entrego?*
 
-- **Lee:** `funnel.bloques` (qué prometió la landing), `desglose.producto`
-- **Escribe:** `producto.*`
+- **Lee:** `funnel.bloques` (qué prometió la landing), `desglose.producto`,
+  `desglose.avatar`, `desglose.nivel_conciencia`, `conocimiento`
+- **Escribe:** `producto.variantes[]`, `producto.recomendada`, `producto.complementarios[]`
 - **Pide si falta:** nada.
 
 > **Este prompt no es de la mentoría.** El curso tiene acá solo un checklist y links a
@@ -638,19 +672,35 @@ consciente del producto le sirve una herramienta). Decime por qué elegiste cada
 
 En low ticket, MENOS es más: un entregable bien hecho convierte mejor que seis a medias.
 
-## PASO 3 — MAPA DEL PRODUCTO
+## PASO 3 — TRES VERSIONES DEL PRODUCTO (no me des una sola)
 
-Entregame el índice del producto: módulos, capítulos o secciones, y qué resuelve cada uno.
-Este índice es el insumo de la etapa de producción — no me escribas el contenido todavía.
+El mismo contenido se puede empaquetar de formas distintas, y de eso depende que el producto
+se sienta propio o una copia. Armá **3 versiones estructurales**: misma promesa, distinto
+envase. Estos tres ejes tienen que estar:
+
+- **Por tiempo** — un plan de X días ("los primeros 7 días")
+- **Por categoría** — organizado por tipo (por momento del día, por ingrediente, por situación)
+- **Por nivel o por caso** — por dónde está el avatar, o por el problema puntual que tiene
+
+Cada versión lleva: nombre, con qué lógica organiza, el **índice completo**, los entregables
+que implica, y por qué le sirve a ESE avatar.
+
+**No son tres redacciones del mismo índice: son tres formas distintas de ordenar el mismo
+material.** Si las tres quedan organizadas igual, no hiciste el trabajo.
+
+Cerrá con cuál recomendarías y por qué. Yo elijo.
+
+**Si `conocimiento.temas` trae material de otras fuentes**, usalo acá: el índice no tiene que
+parecerse al de la oferta modelada. Ahí está la diferencia entre modelar y clonar.
 
 ## PASO 4 — COMPLEMENTARIOS
 
 Qué producto natural viene DESPUÉS de este (lo que compraría alguien que ya compró).
-No lo desarrolles: solo decime qué es y por qué encaja. Es el order bump de la etapa 7.
+No lo desarrolles: solo decime qué es y por qué encaja. Es el order bump de la etapa 8.
 
 ## SALIDA
 
-Devolveme el JSON de `producto`: entregables, formatos y complementarios.
+Devolveme el JSON de `producto`: `variantes[]` (3), `recomendada` y `complementarios`.
 ```
 
 ---
@@ -658,7 +708,7 @@ Devolveme el JSON de `producto`: entregables, formatos y complementarios.
 ### ETAPA 7 — CREATIVOS · *¿cómo lo muestro?*
 
 - **Lee:** `desglose.avatar`, `desglose.nivel_conciencia`, `promesa.elegida`,
-  `funnel.bloques[1]` (headline)
+  `producto.recomendada`, `conocimiento`, `funnel.bloques[1]` (headline)
 - **Escribe:** `creativos.avatar_base`, `creativos.piezas[]`, `creativos.guion_escenas[]`
 - **Pide si falta:** nada.
 - **Este paso son los DOS prompts del curso (creativos + avatar), encadenados.**
@@ -750,6 +800,26 @@ datos.
 Ese avatar queda guardado en `creativos.avatar_base` como referencia visual para todo lo demás.
 
 ## PARTE B — LOS 10 CREATIVOS
+
+**Los 10 no son 10 versiones del mismo aviso.** Tienen que cubrir **modelos de enfoque
+distintos**, porque el objetivo es comparar y elegir, no recibir una familia de variantes del
+mismo ángulo. Los modelos disponibles:
+
+| Modelo | Cómo funciona |
+|---|---|
+| **Confesión** | Alguien cuenta que lo logró, y qué hizo |
+| **El error que comete todo el mundo** | Se acusa al método, no a la persona |
+| **Mecanismo nuevo** | Se revela el cómo, sin prometer el resultado todavía |
+| **Antes y después** | El contraste, sin explicar el cómo |
+| **Objeción frontal** | Se nombra la objeción principal y se la desarma |
+| **Demo / prueba** | Se muestra funcionando |
+| **Curiosidad pura** | Se oculta el dato y se promete la explicación |
+| **Historia de origen** | De dónde salió el método |
+| **Comparación** | Contra el camino viejo, sin nombrar competidores |
+| **Urgencia / coyuntura** | Por qué ahora y no en tres meses |
+
+**Mínimo 6 de los 10 tienen que ser modelos distintos.** Si dos creativos usan el mismo,
+decilo: *"este es una variante del #3"*. Y cerrá diciendo cuál iría primero al aire y por qué.
 
 Cada creativo debe:
 - Detener el scroll en menos de 2 segundos
