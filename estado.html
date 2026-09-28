@@ -7,7 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0A0B0D;--surface:#111316;--border:#24282E;--border-2:#31363E;--ink:#EAEEF3;
-  --ink-2:#A8B1BC;--muted:#6E7783;--accent:#C8F751;--warn:#FF8A3D;
+  --ink-2:#A8B1BC;--muted:#6E7783;--accent:#C8F751;--warn:#FF8A3D;--oro:#C8F751;
+  --maduro:#7FB2FF;--flojo:#FFB05C;--cem:#FF6B6B;
   --f-sans:'Geist',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
   --f-mono:'Geist Mono',ui-monospace,Consolas,monospace}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -39,10 +40,13 @@ th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
 th{color:var(--muted);font-weight:500;font-size:11.5px;font-family:var(--f-mono);
  text-transform:uppercase;letter-spacing:.06em}
 td.pais{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+td.v-oro{color:var(--oro);font-weight:600}td.v-maduro{color:var(--maduro)}
+td.v-flojo{color:var(--flojo)}td.v-cementerio{color:var(--cem)}
 .nota{font-size:12.5px;color:var(--muted);margin-top:10px}
 .caja{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:14px 0}
 .caja h3{font-size:14.5px;font-weight:600;margin-bottom:8px}
 .pie{margin-top:46px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+code{font-family:var(--f-mono);font-size:13px;background:var(--surface);padding:1px 5px;border-radius:4px}
 </style>
 </head>
 <body>
@@ -51,79 +55,109 @@ td.pais{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 <header>
   <a class="volver" href="index.html">← RADAR</a>
   <h1>Cómo vamos</h1>
-  <p class="lead">Estado del proyecto al <b>27 de septiembre de 2026</b>. Todo lo que dice
+  <p class="lead">Estado del proyecto al <b>28 de septiembre de 2026</b>. Todo lo que dice
   “hecho” de acá abajo salió de una prueba real en la máquina, no de una estimación.</p>
 </header>
 
 <div class="kpis">
-  <div class="kpi"><b>727</b><small>anuncios relevados</small></div>
-  <div class="kpi"><b>14</b><small>búsquedas · AR + MX</small></div>
-  <div class="kpi"><b>57</b><small>anunciantes medidos</small></div>
-  <div class="kpi"><b>≈US$1,30</b><small>costo estimado por producto</small></div>
+  <div class="kpi"><b>66</b><small>nichos medidos en AR</small></div>
+  <div class="kpi"><b>23</b><small>búsquedas en 12 nichos</small></div>
+  <div class="kpi"><b>665</b><small>anuncios relevados hoy</small></div>
+  <div class="kpi"><b>13</b><small>nichos en “oro”</small></div>
 </div>
 
 <h2>Qué es <span>en una frase</span></h2>
 <p>Una web que mide la Biblioteca de Anuncios de Meta todos los días y dice <b>dónde conviene
-meterse</b> (el mercado) y <b>qué oferta copiar</b> (la estructura, nunca el archivo), con datos
+meterse</b> (el mercado) y <b>qué oferta modelar</b> (la estructura, nunca el archivo), con datos
 medidos. La señal no es la cantidad de anuncios: es <b>hace cuántos días corren</b>. Nadie paga
 publicidad 90 días seguidos perdiendo plata.</p>
 
-<h2>Lo que ya funciona <span>probado, no prometido</span></h2>
+<h2>Lo nuevo de hoy <span>28-sep</span></h2>
+<ul>
+  <li class="ok"><b>Se midieron 66 nichos</b> —y cambió el rumbo—. El radar tenía 14 búsquedas y
+      <b>13 eran de comida</b>. Medido, la comida resultó <b>el peor lugar donde estar</b>:
+      de sus 4 nichos, uno es oro, uno flojo y dos son cementerio. Y el peor de los 66 medidos es
+      justamente uno que el motor venía buscando todos los días: <i>repostería para vender</i>
+      (5 % de aguante).</li>
+  <li class="ok"><b>El motor estaba caído hace dos días</b> y nadie lo sabía: las corridas
+      fallaban <i>enteras</i>, antes de bajar una sola página. Arreglado en las dos puntas y
+      recuperado. Hoy entraron 665 anuncios.</li>
+  <li class="ok"><b>El deep scrape</b> (<code>modelar.py</code>): se le da el link de un anuncio y
+      devuelve una ficha poblada — precio, moneda, plataforma de pago, bonos, garantía. Probado
+      con una oferta real de 306 días.</li>
+  <li class="ok"><b>RADAR dejó de depender de otro proyecto.</b> Usaba el entorno virtual de
+      AutoValidadorPro sólo porque ahí estaba Playwright. Ahora tiene el suyo, verificado.</li>
+  <li class="ok"><b>Se detectó que Meta corta el acceso</b> después de ~110-130 búsquedas, con una
+      forma silenciosa y peligrosa: la página carga vacía y parece que el nicho no tiene anuncios.
+      El motor ahora lo detecta, espera y reintenta — nunca escribe una medición vacía.</li>
+</ul>
+
+<h2>Los nichos, medidos <span>66 en AR, 43 en MX</span></h2>
+<table>
+  <tr><th>nicho</th><th>país</th><th>anuncios</th><th>corren 90+</th><th>veredicto</th></tr>
+  <tr><td>dropshipping</td><td class='pais'>AR</td><td>270</td><td>52%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>autismo</td><td class='pais'>AR</td><td>390</td><td>52%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>barberia</td><td class='pais'>AR</td><td>1,800</td><td>71%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>lactancia</td><td class='pais'>AR</td><td>700</td><td>46%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>finanzas personales</td><td class='pais'>AR</td><td>480</td><td>41%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>astrologia</td><td class='pais'>AR</td><td>740</td><td>45%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>matematicas</td><td class='pais'>AR</td><td>1,100</td><td>48%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>ahorrar dinero</td><td class='pais'>AR</td><td>1,500</td><td>53%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>meditacion</td><td class='pais'>AR</td><td>1,700</td><td>52%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>caida del cabello</td><td class='pais'>AR</td><td>1,300</td><td>45%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>insomnio</td><td class='pais'>AR</td><td>1,000</td><td>40%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>recetas sin azucar</td><td class='pais'>AR</td><td>1,800</td><td>47%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>chatgpt</td><td class='pais'>AR</td><td>2,000</td><td>48%</td><td class='v-oro'>oro</td></tr>
+  <tr><td>autoestima</td><td class='pais'>AR</td><td>3,200</td><td>76%</td><td class='v-maduro'>maduro</td></tr>
+  <tr><td>celulitis</td><td class='pais'>AR</td><td>2,700</td><td>60%</td><td class='v-maduro'>maduro</td></tr>
+  <tr><td>gatos</td><td class='pais'>AR</td><td>3,100</td><td>56%</td><td class='v-maduro'>maduro</td></tr>
+</table>
+<p class="nota"><b>13 en oro</b> · 27 maduros · 16 flojos · 10 cementerios.
+<b>Oro</b> = aguanta y todavía no está lleno. <b>Maduro</b> = hay demanda pero está saturado (y
+acá están las supervivencias más altas: <i>emprender</i> 80 %, <i>instagram</i> 78 %).
+<b>Corren 90+</b> = porcentaje de anuncios del nicho que llevan más de 90 días activos: es la
+señal de que la oferta se sostiene, no de que hay mucho ruido.</p>
+
+<div class="caja">
+  <h3>El mismo nicho, dos veredictos opuestos</h3>
+  <p style="margin-bottom:0"><b>colesterol alto</b>: en Argentina es <b>cementerio</b> (15 % de
+  aguante) y en México es <b>oro</b> (51 %). Y <b>tiroides</b>: 38 % en AR contra <b>86 %</b> en
+  MX. Si sólo miráramos acá, descartaríamos nichos que en otro mercado están funcionando. Por
+  eso el paso siguiente es medir Brasil y España y cruzar los cuatro mercados.</p>
+</div>
+
+<h2>Lo que ya funcionaba <span>probado antes de hoy</span></h2>
 <ul>
   <li class="ok"><b>El motor corre solo todos los días a las 7:00</b> y guarda lo que Meta muestra
       hoy. La Biblioteca no tiene historial: un día sin correr no se recupera. Hay un watchdog
       que a las 8, 14 y 21 recupera la corrida si se cortó la luz.</li>
-  <li class="ok"><b>Primera corrida real completa</b> (727 anuncios, 14 búsquedas,
-      57 anunciantes medidos), con crudo y métricas guardados por separado.</li>
   <li class="ok"><b>Prototipo navegable</b> de 7 pantallas, con el criterio ya corregido
       (antigüedad y crecimiento en vez de volumen).</li>
-  <li class="ok"><b>Extracción sin cuenta ni API</b>: anuncios, creativos, anunciante, días
-      corriendo y cantidad de anuncios activos por página.</li>
   <li class="ok"><b>Producto de punta a punta como muestra</b>: PDF maquetado (tapa + índice +
       diagrama), portada con IA (US$0,039), voz es-AR y video 1080×1920 con ffmpeg.</li>
+  <li class="ok"><b>Pedido encadenado de 7 etapas</b> con ficha: cada etapa declara qué lee y qué
+      escribe, y ninguna vuelve a pedir lo que ya está. Verificado: 0 referencias rotas.</li>
   <li class="ok"><b>Minería de comentarios</b>: los comentarios de TikTok se leen sin login
       (203 únicos medidos) y sirven como prueba previa barata a la pauta.</li>
-  <li class="ok"><b>Pedido encadenado de 7 etapas</b> (anuncio → creativo → landing → ficha →
-      desglose → promesa → funnel → producto → creativos) escrito como cadena con estado.</li>
 </ul>
 
 <h2>Lo que falta <span>y quién lo destraba</span></h2>
 <ul>
-  <li class="no"><b>El módulo MODELAR</b>: el botón en la tarjeta del anuncio que corre solo
-      las etapas 1 a 4 y devuelve el producto modelado. Es lo próximo a construir.</li>
-  <li class="no"><b>La temperatura llega mañana</b>: se calcula como anuncios activos de hoy
-      menos los de ayer. Con una sola corrida no existe — mañana es el primer delta.</li>
-  <li class="no"><b>Publicar el tablero desde el motor</b>: hoy el tablero se genera local y hay
-      que subirlo a mano.</li>
-  <li class="no"><b>Visor de imágenes del creativo</b> (modelo de visión): falta elegir el modelo
-      de la cascada gratis.</li>
+  <li class="no"><b>Medir Brasil, España y cerrar los 23 huecos de MX.</b> El código está listo y
+      corriendo. Es lo primero que va a estar.</li>
+  <li class="no"><b>El módulo MODELAR</b>: el botón en la tarjeta del anuncio que corre la cadena
+      y devuelve el producto modelado, no la ficha. El plan está en <i>RADAR-Plan-Modelar.md</i>.</li>
+  <li class="no"><b>La base de conocimiento</b> (<i>conocimiento</i> en la ficha): el material del
+      tema, más allá del competidor. Se arma con lo que el motor <b>ya baja y hoy tira</b>.</li>
+  <li class="no"><b>El editor de la landing</b>: los 11 bloques con edición en vivo. Los bloques
+      ya viven en la ficha, así que el HTML sale solo.</li>
+  <li class="no"><b>Publicar el tablero desde el motor</b>: hoy se genera local y hay que subirlo
+      a mano.</li>
   <li class="no"><b>10 a 20 ofertas que se sepa que facturaron</b>: es lo que calibra los pesos
       del índice de oportunidad. Sin eso, el índice es criterio, no medición.</li>
-  <li class="no"><b>2 o 3 anuncios con video reales</b> para cerrar el circuito de transcripción
-      del creativo ajeno.</li>
-  <li class="no"><b>Bajar los creativos</b>: hoy se guardan las URLs, y las URLs de Meta expiran.</li>
   <li class="no"><b>Publicar y cobrar</b> (checkout, campaña, Business Manager): manual por
       decisión, es donde el control queda de tu lado.</li>
 </ul>
-
-<h2>La cancha, medida <span>corrida del 27-sep</span></h2>
-<table>
-  <tr><th>búsqueda</th><th>país</th><th>anuncios totales</th><th>corren 90+</th><th>mediana</th></tr>
-  <tr><td>curso online</td><td class='pais'>AR</td><td>8600</td><td>82%</td><td>194d</td></tr><tr><td>recetas</td><td class='pais'>AR</td><td>9600</td><td>52%</td><td>105d</td></tr><tr><td>recetas sin azucar</td><td class='pais'>AR</td><td>1700</td><td>45%</td><td>86d</td></tr><tr><td>air fryer</td><td class='pais'>AR</td><td>450</td><td>36%</td><td>49d</td></tr><tr><td>recetas</td><td class='pais'>MX</td><td>14000</td><td>34%</td><td>41d</td></tr><tr><td>recetas sin azucar</td><td class='pais'>MX</td><td>2100</td><td>31%</td><td>35d</td></tr><tr><td>menu semanal</td><td class='pais'>AR</td><td>310</td><td>23%</td><td>23d</td></tr><tr><td>meal prep</td><td class='pais'>AR</td><td>750</td><td>22%</td><td>39d</td></tr><tr><td>meal prep</td><td class='pais'>MX</td><td>2100</td><td>19%</td><td>48d</td></tr><tr><td>reposteria para vender</td><td class='pais'>MX</td><td>1000</td><td>14%</td><td>27d</td></tr><tr><td>air fryer</td><td class='pais'>MX</td><td>690</td><td>12%</td><td>32d</td></tr><tr><td>recetas keto</td><td class='pais'>AR</td><td>260</td><td>12%</td><td>18d</td></tr><tr><td>reposteria para vender</td><td class='pais'>AR</td><td>830</td><td>8%</td><td>17d</td></tr><tr><td>menu economico familiar</td><td class='pais'>AR</td><td>—</td><td>—%</td><td>—d</td></tr>
-</table>
-<p class="nota">Mediana = días que lleva corriendo el anuncio del medio de la muestra. Un 82 %
-de 90+ con mediana de 194 días es un mercado profundo; un 8 % es un cementerio: se paga y no
-se sostiene.</p>
-
-<h2>Quién tiene más publicidad activa <span>anuncios por anunciante</span></h2>
-<table>
-  <tr><th>anunciante</th><th>país</th><th>anuncios activos</th><th>el más viejo</th></tr>
-  <tr><td>Chewy</td><td class='pais'>MX</td><td>8500</td><td>89&nbsp;días</td></tr><tr><td>SUBWAY México</td><td class='pais'>MX</td><td>2900</td><td>51&nbsp;días</td></tr><tr><td>Santander Argentina</td><td class='pais'>AR</td><td>1200</td><td>89&nbsp;días</td></tr><tr><td>Telcel</td><td class='pais'>MX</td><td>1200</td><td>20&nbsp;días</td></tr><tr><td>Ollie&#x27;s</td><td class='pais'>MX</td><td>1100</td><td>30&nbsp;días</td></tr><tr><td>ReciMe</td><td class='pais'>AR</td><td>1100</td><td>31&nbsp;días</td></tr><tr><td>Magazine Luiza</td><td class='pais'>AR</td><td>1000</td><td>4&nbsp;días</td></tr><tr><td>Santander Open Academy</td><td class='pais'>AR</td><td>250</td><td>124&nbsp;días</td></tr>
-</table>
-<p class="nota">El conteo de anuncios activos es el proxy de inversión en tráfico — y en esta
-lista entran tanto infoproductos como marcas grandes, así que se lee como <i>quién está gastando</i>, no
-como <i>quién vende</i>. Medido: la cantidad de anuncios correlaciona −0,18 con los días corriendo.
-Manda la persistencia.</p>
 
 <h2>Lo que este sistema no puede <span>dicho sin vueltas</span></h2>
 <ul>
@@ -135,14 +169,16 @@ Manda la persistencia.</p>
       Business Manager.</li>
   <li class="no">Video fotorrealista con movimiento (VEO 3 / HeyGen) sin cuenta paga. Lo que sí
       hay es creativo narrado sobre imágenes, que es lo que usa el bajo ticket.</li>
+  <li class="no">Medir más de ~110-130 búsquedas por hora desde una conexión. Metido el corte,
+      el motor espera y sigue — pero el techo existe y hay que planificar alrededor.</li>
 </ul>
 
 <div class="pie">
   Documentos del proyecto: <a href="RADAR-CAMBIOS.md">registro de cambios y pendientes</a> ·
+  <a href="RADAR-Plan-Modelar.md">el plan de MODELAR</a> ·
+  <a href="RADAR-Prompts-encadenados.md">la cadena de prompts</a> ·
   <a href="RADAR-Capacidades.md">qué puedo y qué no</a> ·
-  <a href="RADAR-Competencia.md">contra adheart y Adminer</a> ·
-  <a href="RADAR-Cadena-de-creacion.md">la cadena de creación</a> ·
-  <a href="RADAR-Forma-del-producto.md">la forma del producto</a><br>
+  <a href="RADAR-Competencia.md">contra adheart y Adminer</a><br>
   Uso interno. Los datos son públicos (Biblioteca de Anuncios de Meta). Sin claves ni credenciales.
 </div>
 
