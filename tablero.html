@@ -1,7 +1,12 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8">
 <title>RADAR — 2026-09-27</title><style>
 *{box-sizing:border-box}
-body{margin:0;font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--foreground,#e8e8e8)}
+/* El tablero se abre con doble clic o desde el sitio publicado, o sea FUERA del marco de Hermes:
+   sin estas variables propias, el texto claro caia sobre fondo blanco y no se leia. */
+:root{color-scheme:dark;--bg:#0B0D10;--foreground:#E9EDF2;--border:#262B32;--accent:#7CC4FF;
+      --card:#15181D}
+body{margin:0;padding:24px 26px 48px;background:var(--bg);color:var(--foreground);
+     font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
 h1{font-size:17px;margin:0 0 2px}
 h2{font-size:14px;margin:22px 0 8px;opacity:.85}
 .sub{opacity:.6;font-size:12px;margin-bottom:14px}
