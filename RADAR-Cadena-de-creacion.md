@@ -229,7 +229,7 @@ Son la referencia de qué se entrega en la Etapa 6.
 
 ## 9. Dónde está el material
 
-Todo bajado de Notion con la API, en `C:\Users\odiki\Desktop\Radar\mentoria\`:
+Todo bajado de Notion con la API, en `C:\Users\odiki\OneDrive\Desktop\Radar\mentoria\`:
 
 - **`mentoria-completa.md`** — la mentoría entera, 1.429 bloques reconstruidos (63.570 chars)
 - **`prompts-extraidos.md`** — los 6 prompts y agentes, extraídos y limpios

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RADAR — cómo vamos</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0B0D;--surface:#111316;--border:#24282E;--border-2:#31363E;--ink:#EAEEF3;
+  --ink-2:#A8B1BC;--muted:#6E7783;--accent:#C8F751;--warn:#FF8A3D;
+  --f-sans:'Geist',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
+  --f-mono:'Geist Mono',ui-monospace,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:15px;line-height:1.6;
+ -webkit-font-smoothing:antialiased;padding:0 20px 90px}
+.wrap{max-width:860px;margin:0 auto}
+a{color:var(--accent)}
+header{padding:54px 0 8px}
+.volver{font-family:var(--f-mono);font-size:12px;color:var(--muted);text-decoration:none}
+.volver:hover{color:var(--ink-2)}
+h1{font-size:33px;font-weight:600;letter-spacing:-.03em;line-height:1.15;margin:20px 0 10px}
+h2{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:40px 0 12px;
+ border-top:1px solid var(--border);padding-top:26px}
+h2 span{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-weight:400;margin-left:8px}
+p{color:var(--ink-2);margin-bottom:12px}
+.lead{font-size:16px;max-width:660px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:24px 0 6px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.kpi b{display:block;font-size:26px;font-weight:600;letter-spacing:-.02em}
+.kpi small{color:var(--muted);font-size:11.5px;font-family:var(--f-mono)}
+ul{list-style:none;margin:6px 0 4px}
+li{position:relative;padding-left:26px;margin-bottom:9px;color:var(--ink-2);font-size:14.5px}
+li:before{position:absolute;left:0;top:0;font-family:var(--f-mono);font-size:13px}
+li.ok:before{content:"✓";color:var(--accent)}
+li.no:before{content:"○";color:var(--warn)}
+li b{color:var(--ink);font-weight:500}
+table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:500;font-size:11.5px;font-family:var(--f-mono);
+ text-transform:uppercase;letter-spacing:.06em}
+td.pais{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.nota{font-size:12.5px;color:var(--muted);margin-top:10px}
+.caja{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:14px 0}
+.caja h3{font-size:14.5px;font-weight:600;margin-bottom:8px}
+.pie{margin-top:46px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="volver" href="index.html">← RADAR</a>
+  <h1>Cómo vamos</h1>
+  <p class="lead">Estado del proyecto al <b>27 de septiembre de 2026</b>. Todo lo que dice
+  “hecho” de acá abajo salió de una prueba real en la máquina, no de una estimación.</p>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><b>727</b><small>anuncios relevados</small></div>
+  <div class="kpi"><b>14</b><small>búsquedas · AR + MX</small></div>
+  <div class="kpi"><b>52</b><small>anunciantes medidos</small></div>
+  <div class="kpi"><b>US$1,30</b><small>costo de un producto entero</small></div>
+</div>
+
+<h2>Qué es <span>en una frase</span></h2>
+<p>Una web que mide la Biblioteca de Anuncios de Meta todos los días y dice <b>dónde conviene
+meterse</b> (el mercado) y <b>qué oferta copiar</b> (la estructura, nunca el archivo), con datos
+medidos. La señal no es la cantidad de anuncios: es <b>hace cuántos días corren</b>. Nadie paga
+publicidad 90 días seguidos perdiendo plata.</p>
+
+<h2>Lo que ya funciona <span>probado, no prometido</span></h2>
+<ul>
+  <li class="ok"><b>El motor corre solo todos los días a las 7:00</b> y guarda lo que Meta muestra
+      hoy. La Biblioteca no tiene historial: un día sin correr no se recupera. Hay un watchdog
+      que a las 8, 14 y 21 recupera la corrida si se cortó la luz.</li>
+  <li class="ok"><b>Primera corrida real completa</b> (727 anuncios, 14 búsquedas,
+      52 anunciantes medidos), con crudo y métricas guardados por separado.</li>
+  <li class="ok"><b>Prototipo navegable</b> de 7 pantallas, con el criterio ya corregido
+      (antigüedad y crecimiento en vez de volumen).</li>
+  <li class="ok"><b>Extracción sin cuenta ni API</b>: anuncios, creativos, anunciante, días
+      corriendo y cantidad de anuncios activos por página.</li>
+  <li class="ok"><b>Producto de punta a punta como muestra</b>: PDF maquetado (tapa + índice +
+      diagrama), portada con IA (US$0,039), voz es-AR y video 1080×1920 con ffmpeg.</li>
+  <li class="ok"><b>Minería de comentarios</b>: los comentarios de TikTok se leen sin login
+      (203 únicos medidos) y sirven como prueba previa barata a la pauta.</li>
+  <li class="ok"><b>Pedido encadenado de 7 etapas</b> (anuncio → creativo → landing → ficha →
+      desglose → promesa → funnel → producto → creativos) escrito como cadena con estado.</li>
+</ul>
+
+<h2>Lo que falta <span>y quién lo destraba</span></h2>
+<ul>
+  <li class="no"><b>El módulo MODELAR</b>: el botón en la tarjeta del anuncio que corre solo
+      las etapas 1 a 4 y devuelve el producto modelado. Es lo próximo a construir.</li>
+  <li class="no"><b>La temperatura llega mañana</b>: se calcula como anuncios activos de hoy
+      menos los de ayer. Con una sola corrida no existe — mañana es el primer delta.</li>
+  <li class="no"><b>Publicar el tablero desde el motor</b>: hoy el tablero se genera local y hay
+      que subirlo a mano.</li>
+  <li class="no"><b>Visor de imágenes del creativo</b> (modelo de visión): falta elegir el modelo
+      de la cascada gratis.</li>
+  <li class="no"><b>10 a 20 ofertas que se sepa que facturaron</b>: es lo que calibra los pesos
+      del índice de oportunidad. Sin eso, el índice es criterio, no medición.</li>
+  <li class="no"><b>2 o 3 anuncios con video reales</b> para cerrar el circuito de transcripción
+      del creativo ajeno.</li>
+  <li class="no"><b>Bajar los creativos</b>: hoy se guardan las URLs, y las URLs de Meta expiran.</li>
+  <li class="no"><b>Publicar y cobrar</b> (checkout, campaña, Business Manager): manual por
+      decisión, es donde el control queda de tu lado.</li>
+</ul>
+
+<h2>La cancha, medida <span>corrida del 27-sep</span></h2>
+<table>
+  <tr><th>búsqueda</th><th>país</th><th>anuncios totales</th><th>corren 90+</th><th>mediana</th></tr>
+  <tr><td>curso online</td><td class='pais'>AR</td><td>8600</td><td>82%</td><td>194d</td></tr><tr><td>recetas</td><td class='pais'>AR</td><td>9600</td><td>52%</td><td>105d</td></tr><tr><td>recetas sin azucar</td><td class='pais'>AR</td><td>1700</td><td>45%</td><td>86d</td></tr><tr><td>air fryer</td><td class='pais'>AR</td><td>450</td><td>36%</td><td>49d</td></tr><tr><td>recetas</td><td class='pais'>MX</td><td>14000</td><td>34%</td><td>41d</td></tr><tr><td>recetas sin azucar</td><td class='pais'>MX</td><td>2100</td><td>31%</td><td>35d</td></tr><tr><td>menu semanal</td><td class='pais'>AR</td><td>310</td><td>23%</td><td>23d</td></tr><tr><td>meal prep</td><td class='pais'>AR</td><td>750</td><td>22%</td><td>39d</td></tr><tr><td>meal prep</td><td class='pais'>MX</td><td>2100</td><td>19%</td><td>48d</td></tr><tr><td>reposteria para vender</td><td class='pais'>MX</td><td>1000</td><td>14%</td><td>27d</td></tr><tr><td>air fryer</td><td class='pais'>MX</td><td>690</td><td>12%</td><td>32d</td></tr><tr><td>recetas keto</td><td class='pais'>AR</td><td>260</td><td>12%</td><td>18d</td></tr><tr><td>reposteria para vender</td><td class='pais'>AR</td><td>830</td><td>8%</td><td>17d</td></tr><tr><td>menu economico familiar</td><td class='pais'>AR</td><td>—</td><td>—%</td><td>—d</td></tr>
+</table>
+<p class="nota">Mediana = días que lleva corriendo el anuncio del medio de la muestra. Un 82 %
+de 90+ con mediana de 194 días es un mercado profundo; un 8 % es un cementerio: se paga y no
+se sostiene.</p>
+
+<h2>Quién paga de verdad <span>anuncios activos por anunciante</span></h2>
+<table>
+  <tr><th>anunciante</th><th>país</th><th>anuncios activos</th><th>el más viejo</th></tr>
+  <tr><td>Chewy</td><td class='pais'>MX</td><td>8500</td><td>89&nbsp;días</td></tr><tr><td>SUBWAY México</td><td class='pais'>MX</td><td>2900</td><td>51&nbsp;días</td></tr><tr><td>Santander Argentina</td><td class='pais'>AR</td><td>1200</td><td>89&nbsp;días</td></tr><tr><td>Telcel</td><td class='pais'>MX</td><td>1200</td><td>20&nbsp;días</td></tr><tr><td>Ollie&#x27;s</td><td class='pais'>MX</td><td>1100</td><td>30&nbsp;días</td></tr><tr><td>ReciMe</td><td class='pais'>AR</td><td>1100</td><td>31&nbsp;días</td></tr><tr><td>Magazine Luiza</td><td class='pais'>AR</td><td>1000</td><td>4&nbsp;días</td></tr><tr><td>Santander Open Academy</td><td class='pais'>AR</td><td>250</td><td>124&nbsp;días</td></tr>
+</table>
+<p class="nota">El conteo de anuncios activos es el proxy de inversión en tráfico. Ojo: la
+cantidad de anuncios por sí sola <b>no</b> prueba ventas (medido: correlación −0,18 con los días
+corriendo). Manda la persistencia.</p>
+
+<h2>Lo que este sistema no puede <span>dicho sin vueltas</span></h2>
+<ul>
+  <li class="no">Verificar si una oferta factura: Meta no publica el gasto de los anuncios
+      comerciales. Se infiere por persistencia y crecimiento.</li>
+  <li class="no">Copiar los archivos del competidor (su PDF, su video): es ilegal. Se copia la
+      estructura de la oferta.</li>
+  <li class="no">Operar cuentas de terceros: publicar el producto, crear la campaña, tocar el
+      Business Manager.</li>
+  <li class="no">Video fotorrealista con movimiento (VEO 3 / HeyGen) sin cuenta paga. Lo que sí
+      hay es creativo narrado sobre imágenes, que es lo que usa el bajo ticket.</li>
+</ul>
+
+<div class="pie">
+  Documentos del proyecto: <a href="RADAR-CAMBIOS.md">registro de cambios y pendientes</a> ·
+  <a href="RADAR-Capacidades.md">qué puedo y qué no</a> ·
+  <a href="RADAR-Competencia.md">contra adheart y Adminer</a> ·
+  <a href="RADAR-Cadena-de-creacion.md">la cadena de creación</a> ·
+  <a href="RADAR-Forma-del-producto.md">la forma del producto</a><br>
+  Uso interno. Los datos son públicos (Biblioteca de Anuncios de Meta). Sin claves ni credenciales.
+</div>
+
+</div>
+</body>
+</html>

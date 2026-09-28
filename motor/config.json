@@ -1,0 +1,24 @@
+{
+  "pais_default": "AR",
+  "busquedas": [
+    ["recetas", "AR"],
+    ["recetas", "MX"],
+    ["air fryer", "AR"],
+    ["air fryer", "MX"],
+    ["menu economico familiar", "AR"],
+    ["menu semanal", "AR"],
+    ["reposteria para vender", "AR"],
+    ["reposteria para vender", "MX"],
+    ["meal prep", "AR"],
+    ["meal prep", "MX"],
+    ["recetas sin azucar", "AR"],
+    ["recetas sin azucar", "MX"],
+    ["recetas keto", "AR"],
+    ["curso online", "AR"]
+  ],
+  "max_anunciantes_por_busqueda": 4,
+  "espera_busqueda_ms": 7000,
+  "espera_ficha_ms": 6000,
+  "scrolls": 5,
+  "dir_datos": "datos"
+}

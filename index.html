@@ -41,6 +41,13 @@ a.card h3{font-size:17px;font-weight:600;letter-spacing:-.01em}
 a.card p{color:var(--ink-2);font-size:13.5px;margin-bottom:14px}
 a.card .falso{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
 a.card .flecha{color:var(--accent);font-family:var(--f-mono);font-size:12px;margin-top:12px;display:block}
+h4{font-size:12px;font-family:var(--f-mono);color:var(--muted);text-transform:uppercase;
+   letter-spacing:.08em;margin:40px 0 12px}
+.docs{display:flex;flex-direction:column;gap:2px}
+.docs a{color:var(--ink-2);text-decoration:none;font-size:14px;padding:9px 0;
+  border-bottom:1px solid var(--border)}
+.docs a:hover{color:var(--accent)}
+.docs span{color:var(--muted);font-size:12.5px}
 .pie{margin-top:44px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
 .pie b{color:var(--ink-2);font-weight:500}
 </style>
@@ -50,13 +57,32 @@ a.card .flecha{color:var(--accent);font-family:var(--f-mono);font-size:12px;marg
 
 <header>
   <div class="marca"><span class="punto"></span><h1>RADAR</h1>
-    <span class="tag">prototipos · sep 2026</span></div>
+    <span class="tag">sep 2026</span></div>
   <h2>Ofertas digitales que están escalando</h2>
-  <p class="sub">Dos prototipos navegables del mismo producto. El primero muestra el diseño y las
-     interacciones con datos de ejemplo; el segundo, la prueba real contra la Biblioteca de Anuncios de Meta.</p>
+  <p class="sub">La Biblioteca de Anuncios de Meta, medida todos los días. La señal no es cuántos
+     anuncios hay: es <b>hace cuántos días corren</b>. Nadie paga publicidad 90 días seguidos
+     perdiendo plata.</p>
 </header>
 
 <div class="tarjetas">
+  <a class="card" href="estado.html">
+    <div class="fila"><h3>Cómo vamos</h3><span class="etq e-esc">empezá por acá</span></div>
+    <p>El estado del proyecto al 27 de septiembre: qué ya funciona y está probado, qué falta y
+       quién lo destraba, lo que el sistema <i>no</i> puede hacer, y los números de la primera
+       corrida real.</p>
+    <span class="falso">hecho ✓ · pendiente ○ · medido, no estimado</span>
+    <span class="flecha">Entrar →</span>
+  </a>
+
+  <a class="card" href="tablero.html">
+    <div class="fila"><h3>Tablero del 27-sep</h3><span class="etq e-con">datos reales</span></div>
+    <p>Lo que dejó la primera corrida del motor: persistencia por búsqueda, anuncios activos por
+       anunciante y los 727 anuncios relevados con su copy, dominio y precio. Se abre desde la
+       compu o el teléfono.</p>
+    <span class="falso">14 búsquedas · AR + MX · 727 anuncios · autocontenido</span>
+    <span class="flecha">Abrir →</span>
+  </a>
+
   <a class="card" href="Radar-Prototipo.html">
     <div class="fila"><h3>Prototipo navegable</h3><span class="etq e-esc">diseño completo</span></div>
     <p>Siete pantallas con datos de ejemplo: panel, librería con filtros, ficha de oferta, match,
@@ -73,19 +99,20 @@ a.card .flecha{color:var(--accent);font-family:var(--f-mono);font-size:12px;marg
     <span class="falso">19 anuncios reales · un anunciante por tarjeta · filtros y ficha</span>
     <span class="flecha">Entrar →</span>
   </a>
+</div>
 
-  <a class="card" href="RADAR-Forma-del-producto.md">
-    <div class="fila"><h3>La forma del producto</h3><span class="etq e-pro">documento</span></div>
-    <p>El diseño completo: los dos niveles de análisis, las siete pantallas, las fórmulas del criterio,
-       el modelo de datos, el roadmap por fases y cómo escala de la PC a la nube.</p>
-    <span class="falso">Markdown · se descarga</span>
-    <span class="flecha">Abrir →</span>
-  </a>
+<h4>Documentos</h4>
+<div class="docs">
+  <a href="RADAR-CAMBIOS.md">Registro de cambios y pendientes <span>· el estado del proyecto fuera del chat</span></a>
+  <a href="RADAR-Capacidades.md">Qué puedo hacer y qué no <span>· medido en la máquina, con costos</span></a>
+  <a href="RADAR-Competencia.md">Contra adheart y Adminer <span>· campo por campo</span></a>
+  <a href="RADAR-Cadena-de-creacion.md">La cadena de creación <span>· de anuncio a producto en 9 etapas</span></a>
+  <a href="RADAR-Forma-del-producto.md">La forma del producto <span>· diseño, criterio, roadmap</span></a>
 </div>
 
 <div class="pie">
-  Todo lo de esta página es de <b>uso interno</b>: los datos de la prueba real son públicos
-  (provienen de la Biblioteca de Anuncios de Meta) y el prototipo usa datos de ejemplo.<br>
+  Todo lo de esta página es de <b>uso interno</b>: los datos son públicos (provienen de la
+  Biblioteca de Anuncios de Meta) y el prototipo usa datos de ejemplo.<br>
   Ningún archivo contiene claves ni credenciales.
 </div>
 
